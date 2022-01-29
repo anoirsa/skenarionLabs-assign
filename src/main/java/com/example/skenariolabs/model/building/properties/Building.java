@@ -1,6 +1,7 @@
-package com.example.skenariolabs.model.building;
+package com.example.skenariolabs.model.building.properties;
 
 
+import com.example.skenariolabs.model.building.coordinates.Coordinates;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,9 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 
-@Entity(
-        name="Building"
-)
+@Entity(name ="Building")
 @Table(name = "buildings")
 public class Building {
     @Id
@@ -25,17 +24,25 @@ public class Building {
             strategy = GenerationType.SEQUENCE,
             generator = "building_sequence"
     )
-    private Long buildingId;
+    @Column(name = "id")
+    private Long id;
     private String buildingName, buildingStreet,
     buildingNumber, buildingCity, buildingCountry,
     buildingDescription;
     private Integer buildingPostalCode;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordinates_id",referencedColumnName = "id")
+    private Coordinates buildingCoordinates;
+
     public Building(String buildingName,
-                    String buildingStreet, String buildingNumber,
-                    String buildingCity, String buildingCountry,
-                    String buildingDescription, Integer
-                            buildingPostalCode) {
+                    String buildingStreet,
+                    String buildingNumber,
+                    String buildingCity,
+                    String buildingCountry,
+                    String buildingDescription,
+                    Integer buildingPostalCode,
+                    Coordinates buildingCoordinates) {
         this.buildingName = buildingName;
         this.buildingStreet = buildingStreet;
         this.buildingNumber = buildingNumber;
@@ -43,5 +50,13 @@ public class Building {
         this.buildingCountry = buildingCountry;
         this.buildingDescription = buildingDescription;
         this.buildingPostalCode = buildingPostalCode;
+        this.buildingCoordinates = buildingCoordinates;
     }
 }
+
+
+
+
+/**
+
+ **/

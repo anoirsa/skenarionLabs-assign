@@ -1,7 +1,7 @@
 package com.example.skenariolabs.dataRepo;
 
 
-import com.example.skenariolabs.model.building.Building;
+import com.example.skenariolabs.model.building.properties.Building;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

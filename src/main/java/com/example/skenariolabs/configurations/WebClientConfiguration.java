@@ -7,9 +7,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfiguration {
+    @Value("${geoapify.baseUrl}")
+    private String baseUrl;
+
     @Bean
     public WebClient localApiClient() {
-        return WebClient.create("https://dev-academy-pre-assig-backend-f32wyhbvoq-lz.a.run.app");
+        return WebClient.create(baseUrl);
     }
 
 }

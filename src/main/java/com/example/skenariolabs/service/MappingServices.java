@@ -1,16 +1,13 @@
 package com.example.skenariolabs.service;
 
 
-import com.example.skenariolabs.model.building.Building;
-import com.example.skenariolabs.model.building.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.Building;
+import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class MappingServices {
@@ -35,5 +32,6 @@ public class MappingServices {
                 .map(building -> mapper.map(building, BuildingReadWrite.class)).collect(Collectors.toList());
         return mappedArray;
     }
+
 
 }
