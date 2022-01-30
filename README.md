@@ -1,5 +1,9 @@
 # 1. Project's Title
-Skenariolabs portfolio buildings
+Skenariolabs portfolio buildings, video of demonstration through this [link](https://drive.google.com/file/d/1zWiXGLGQ4f6jsTPAEWEkzW075f5kwEMM/view?usp=sharing)
+
+###### note (When watching the video on google drive, you need to manually set it to 720p instead of the default 360p);
+
+
 
 # 2. Project Description
 This is a Springboot REST API application running in a maven JDK environment for managing buildings portolio <br/>
