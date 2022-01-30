@@ -6,7 +6,7 @@ Skenariolabs portfolio buildings, video of demonstration through this [link](htt
 
 
 # 2. Project Description
-This is a Springboot REST API application running in a maven JDK environment for managing buildings portolio <br/>
+This is a Springboot REST API application running in a maven JDK environment for managing buildings portolio. The application uses embedded SQL database<br/>
 Generally, you could: 
 - Add new building based on (Name of building, Street, Number, Postal code, City, Country, Description).
 - Coordinates will be found automatically based on the address using geoapify.
