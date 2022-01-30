@@ -5,14 +5,12 @@ import com.example.skenariolabs.model.building.properties.Building;
 import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class MappingServices {
     private DozerBeanMapper mapper;
-
 
     public MappingServices() {
         this.mapper = new DozerBeanMapper();

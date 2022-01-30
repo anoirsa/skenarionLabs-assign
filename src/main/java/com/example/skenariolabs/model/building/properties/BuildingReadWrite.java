@@ -1,6 +1,5 @@
 package com.example.skenariolabs.model.building.properties;
 
-import com.example.skenariolabs.model.building.coordinates.Coordinates;
 import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+
 @ToString
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -3,7 +3,6 @@ package com.example.skenariolabs.model.building.properties;
 
 import com.example.skenariolabs.model.building.coordinates.Coordinates;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Getter
@@ -53,10 +52,3 @@ public class Building {
         this.buildingCoordinates = buildingCoordinates;
     }
 }
-
-
-
-
-/**
-
- **/

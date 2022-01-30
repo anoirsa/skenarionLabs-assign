@@ -1,17 +1,13 @@
 package com.example.skenariolabs.model.building.coordinates;
 
 import com.example.skenariolabs.model.building.properties.Building;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-
 import javax.persistence.*;
-
 
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-
 
 @Entity
 @Table(name = "coordinates")

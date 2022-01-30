@@ -1,12 +1,10 @@
 package com.example.skenariolabs;
 
-import com.example.skenariolabs.dataRepo.BuildingDataRepo;
+import com.example.skenariolabs.repository.BuildingRepository;
 import com.example.skenariolabs.model.building.properties.Building;
 import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
 import com.example.skenariolabs.service.BuildingService;
-import com.example.skenariolabs.service.ExternalApiService;
 import com.example.skenariolabs.service.MappingServices;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ class SkenariolabsApplicationTests {
 	@Autowired
 	BuildingService buildingService;
 	@Autowired
-	BuildingDataRepo buildingDataRepo;
+	BuildingRepository buildingDataRepo;
 	@Autowired
 	MappingServices mappingServices;
 
@@ -52,6 +50,14 @@ class SkenariolabsApplicationTests {
 		List<Building> all = buildingDataRepo.findAll();
 		// Assert that another building must be added
 		Assertions.assertEquals(all.size(), 2);
+	}
+	@Test
+	public void testRepoGetUnique() {
+		List<BuildingReadWrite> findByName = mappingServices.mapToBuildingReadWriteArray
+				(buildingDataRepo.getBuildingByBuildingName("Vaasa university of applied sciences"));
+		// Assert that we find the building that we want to
+		Assertions.assertEquals(findByName.size(), 1);
+		Assertions.assertEquals(findByName.get(0).getBuildingDescription(), "Education institution");
 	}
 
 	@Test

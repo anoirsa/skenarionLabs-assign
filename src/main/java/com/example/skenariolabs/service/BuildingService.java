@@ -1,25 +1,21 @@
 package com.example.skenariolabs.service;
 
 
-import com.example.skenariolabs.dataRepo.BuildingDataRepo;
+import com.example.skenariolabs.repository.BuildingRepository;
 import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
 import com.example.skenariolabs.model.building.properties.Building;
 import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
 import com.example.skenariolabs.model.response.ResponseObject;
 import lombok.AllArgsConstructor;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class BuildingService {
     private final MappingServices mappingServices;
-    private final BuildingDataRepo buildingDataRepo;
+    private final BuildingRepository buildingDataRepo;
     private final ExternalApiService externalApiService;
-
 
     public ResponseObject addBuilding(BuildingReadWrite building) {
         CoordinatesReadWrite coordinatesFound = externalApiService.getCoordinates(building.getFullAddress());
@@ -48,19 +44,39 @@ public class BuildingService {
     }
 
     public ResponseObject updateBuilding(String buildingName,
-                                                BuildingReadWrite buildingReadWrite) {
+                                         BuildingReadWrite buildingReadWrite) {
         ResponseObject responseObject = new ResponseObject(buildingReadWrite);
-        try {
-            buildingDataRepo.updateBuilding(buildingName,
-                    buildingReadWrite.getBuildingName(),
-                    buildingReadWrite.getBuildingDescription());
+        List<Building> buildingFound = buildingDataRepo
+                .getBuildingByBuildingName(buildingName);
+        if (buildingFound.size() == 0) {
+            responseObject.setNote("No building with that name is found");
+        } else {
 
-        } catch (Exception e) {
-            responseObject.setError(true);
-            responseObject.setErrorText("Update data failed for the reason " + e);
+            try {
+                buildingDataRepo.updateBuilding(buildingName,
+                        buildingReadWrite.getBuildingName(),
+                        buildingReadWrite.getBuildingDescription());
+
+            } catch (Exception e) {
+                responseObject.setError(true);
+                responseObject.setErrorText("Update data failed for the reason " + e);
+            }
         }
         return responseObject;
+    }
 
+    public ResponseObject getBuildingByBuildingName(String buildingName) {
+        List<Building> buildingFound = buildingDataRepo
+                .getBuildingByBuildingName(buildingName);
+        ResponseObject responseObject = new ResponseObject();
+        if (buildingFound.size() == 0) {
+            responseObject.setNote("No building found with that name");
+        } else {
+            List<BuildingReadWrite> buildingFoundRead =
+                    mappingServices.mapToBuildingReadWriteArray(buildingFound);
+            responseObject.setData(buildingFoundRead);
+        }
+        return responseObject;
     }
 
 
