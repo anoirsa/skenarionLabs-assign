@@ -2,7 +2,7 @@ package com.example.skenariolabs.service;
 
 
 import com.example.skenariolabs.model.building.properties.Building;
-import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingReadWrite;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;

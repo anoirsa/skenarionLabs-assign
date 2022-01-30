@@ -1,8 +1,9 @@
 package com.example.skenariolabs;
 
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingUpdate;
 import com.example.skenariolabs.repository.BuildingRepository;
 import com.example.skenariolabs.model.building.properties.Building;
-import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingReadWrite;
 import com.example.skenariolabs.service.BuildingService;
 import com.example.skenariolabs.service.MappingServices;
 import org.junit.jupiter.api.Assertions;
@@ -62,7 +63,7 @@ class SkenariolabsApplicationTests {
 
 	@Test
 	public void testReposPut() {
-		BuildingReadWrite modification = new BuildingReadWrite("Novia university of applied sciences",
+		BuildingUpdate modification = new BuildingUpdate("Novia university of applied sciences",
 				"Education school");
 		buildingService.updateBuilding("Novia university of applied sciences", modification);
 

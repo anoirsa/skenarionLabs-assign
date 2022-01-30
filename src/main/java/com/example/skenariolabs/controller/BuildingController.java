@@ -1,6 +1,7 @@
 package com.example.skenariolabs.controller;
 
-import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingUpdate;
 import com.example.skenariolabs.model.response.ResponseObject;
 import com.example.skenariolabs.service.BuildingService;
 import lombok.AllArgsConstructor;
@@ -36,8 +37,8 @@ public class BuildingController {
     @PutMapping("/update/buildingName={buildingName}")
     public @ResponseBody
     ResponseObject updateBuilding(@PathVariable String buildingName,
-                                  @RequestBody BuildingReadWrite buildingReadWrite) {
-        return buildingService.updateBuilding(buildingName, buildingReadWrite);
+                                  @RequestBody BuildingUpdate buildingUpdate) {
+        return buildingService.updateBuilding(buildingName, buildingUpdate);
     }
 
 

@@ -1,6 +1,6 @@
-package com.example.skenariolabs.model.building.properties;
+package com.example.skenariolabs.model.building.properties.dtaos;
 
-import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
+import com.example.skenariolabs.model.building.coordinates.dtaos.CoordinatesReadWrite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -33,12 +33,6 @@ public class BuildingReadWrite  {
         this.buildingCountry = buildingCountry;
         this.buildingDescription = buildingDescription;
         this.buildingPostalCode = buildingPostalCode;
-    }
-
-    public BuildingReadWrite(String buildingName,
-                             String buildingDescription) {
-        this.buildingName = buildingName;
-        this.buildingDescription = buildingDescription;
     }
 
     @JsonIgnore

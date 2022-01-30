@@ -1,10 +1,11 @@
 package com.example.skenariolabs.service;
 
 
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingUpdate;
 import com.example.skenariolabs.repository.BuildingRepository;
-import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
+import com.example.skenariolabs.model.building.coordinates.dtaos.CoordinatesReadWrite;
 import com.example.skenariolabs.model.building.properties.Building;
-import com.example.skenariolabs.model.building.properties.BuildingReadWrite;
+import com.example.skenariolabs.model.building.properties.dtaos.BuildingReadWrite;
 import com.example.skenariolabs.model.response.ResponseObject;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,8 @@ public class BuildingService {
     }
 
     public ResponseObject updateBuilding(String buildingName,
-                                         BuildingReadWrite buildingReadWrite) {
-        ResponseObject responseObject = new ResponseObject(buildingReadWrite);
+                                         BuildingUpdate buildingUpdate) {
+        ResponseObject responseObject = new ResponseObject(buildingUpdate);
         List<Building> buildingFound = buildingDataRepo
                 .getBuildingByBuildingName(buildingName);
         if (buildingFound.size() == 0) {
@@ -54,8 +55,8 @@ public class BuildingService {
 
             try {
                 buildingDataRepo.updateBuilding(buildingName,
-                        buildingReadWrite.getBuildingName(),
-                        buildingReadWrite.getBuildingDescription());
+                        buildingUpdate.getBuildingName(),
+                        buildingUpdate.getBuildingDescription());
 
             } catch (Exception e) {
                 responseObject.setError(true);

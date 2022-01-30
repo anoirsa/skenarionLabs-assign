@@ -1,7 +1,7 @@
 package com.example.skenariolabs.service;
 
 
-import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
+import com.example.skenariolabs.model.building.coordinates.dtaos.CoordinatesReadWrite;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

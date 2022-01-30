@@ -1,4 +1,4 @@
-package com.example.skenariolabs.model.building.coordinates;
+package com.example.skenariolabs.model.building.coordinates.dtaos;
 
 import lombok.*;
 
