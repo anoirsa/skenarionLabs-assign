@@ -18,7 +18,7 @@ import java.util.Optional;
 public class BuildingService {
     private final MappingServices mappingServices;
     private final BuildingDataRepo buildingDataRepo;
-    private final  ExternalApiService externalApiService;
+    private final ExternalApiService externalApiService;
 
 
     public ResponseObject addBuilding(BuildingReadWrite building) {
@@ -31,11 +31,10 @@ public class BuildingService {
             responseObject.setErrorText("API call failure");
         }
         try {
-        buildingDataRepo.save(newBuilding);
-        }
-        catch (ConstraintViolationException e) {
+            buildingDataRepo.save(newBuilding);
+        } catch (Exception e) {
             responseObject.setError(true);
-            responseObject.setErrorText("Insertion failed, constraints problem");
+            responseObject.setErrorText("Insertion failed for the reason " + e);
         }
 
         return responseObject;
@@ -45,7 +44,24 @@ public class BuildingService {
         List<Building> allBuildings = buildingDataRepo.findAll();
         List<BuildingReadWrite> buildingReadWrites = mappingServices.mapToBuildingReadWriteArray(allBuildings);
         ResponseObject responseObject = new ResponseObject(buildingReadWrites);
-        return  responseObject;
+        return responseObject;
     }
+
+    public ResponseObject updateBuilding(String buildingName,
+                                                BuildingReadWrite buildingReadWrite) {
+        ResponseObject responseObject = new ResponseObject(buildingReadWrite);
+        try {
+            buildingDataRepo.updateBuilding(buildingName,
+                    buildingReadWrite.getBuildingName(),
+                    buildingReadWrite.getBuildingDescription());
+
+        } catch (Exception e) {
+            responseObject.setError(true);
+            responseObject.setErrorText("Update data failed for the reason " + e);
+        }
+        return responseObject;
+
+    }
+
 
 }

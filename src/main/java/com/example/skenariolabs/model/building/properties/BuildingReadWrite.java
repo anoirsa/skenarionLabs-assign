@@ -2,6 +2,8 @@ package com.example.skenariolabs.model.building.properties;
 
 import com.example.skenariolabs.model.building.coordinates.Coordinates;
 import com.example.skenariolabs.model.building.coordinates.CoordinatesReadWrite;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Getter
@@ -10,14 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BuildingReadWrite  {
     private String buildingName, buildingStreet,
             buildingNumber, buildingCity, buildingCountry,
             buildingDescription;
     private Integer buildingPostalCode;
     private CoordinatesReadWrite buildingCoordinates;
-
 
     public BuildingReadWrite(String buildingName,
                              String buildingStreet,
@@ -34,6 +35,14 @@ public class BuildingReadWrite  {
         this.buildingDescription = buildingDescription;
         this.buildingPostalCode = buildingPostalCode;
     }
+
+    public BuildingReadWrite(String buildingName,
+                             String buildingDescription) {
+        this.buildingName = buildingName;
+        this.buildingDescription = buildingDescription;
+    }
+
+    @JsonIgnore
     public String getFullAddress() {
         return  String.format("%s %s, %s %s, %s",
                 buildingStreet,

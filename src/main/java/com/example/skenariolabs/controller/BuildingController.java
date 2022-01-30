@@ -26,6 +26,13 @@ public class BuildingController {
         return buildingService.addBuilding(buildingReadWrite);
     }
 
+    @PutMapping("/update/buildingName={buildingName}")
+    public @ResponseBody
+    ResponseObject updateBuilding(@PathVariable String buildingName,
+                                  @RequestBody BuildingReadWrite buildingReadWrite) {
+        return buildingService.updateBuilding(buildingName, buildingReadWrite);
+    }
+
 
 
 
