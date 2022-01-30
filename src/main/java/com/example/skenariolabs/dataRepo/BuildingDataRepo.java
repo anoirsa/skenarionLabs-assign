@@ -18,4 +18,5 @@ public interface BuildingDataRepo extends JpaRepository<Building, Long> {
     void updateBuilding(String buildingName, String newBuildingName,
                         String buildingDescription);
 
+
 }
